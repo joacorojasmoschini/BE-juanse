@@ -9,10 +9,10 @@ const {
 
 const router = Router();
 
-router.get("/:pagina", getAllCtrl)
-router.get("/:pagina/:id", getCtrl);
-router.post("/:pagina", createCtrl);
-router.put("/:pagina/:id", updateCtrl);
-router.delete("/:pagina/:id", deleteCtrl);
+router.get("/:website", getAllCtrl)
+router.get("/:website/:id", getCtrl);
+router.post("/:website", createCtrl);
+router.put("/:website/:id", updateCtrl);
+router.delete("/:website/:id", deleteCtrl);
 
 module.exports = { router };
