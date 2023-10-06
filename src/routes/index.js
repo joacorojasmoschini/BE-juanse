@@ -12,9 +12,8 @@ const cleanName = (fileName) => {
 readdirSync(PATH_ROUTER).filter((fileName) => {
   const cleanFileName = cleanName(fileName);
   if (cleanFileName !== "index") {
-    require(`./${cleanFileName}`).then((moduleRouter) => {
-      router.use(`/${cleanFileName}`, moduleRouter.router);
-    });
+    const moduleRouter = require(`./${cleanFileName}`);
+    router.use(`/${cleanFileName}`, moduleRouter.router);
   }
 });
 
