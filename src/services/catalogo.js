@@ -1,7 +1,23 @@
 const { CatalogoSurtonica, CatalogoJuanse } = require("../models/catalogo");
 
-const getCatalogos = async (website) => {};
-const getCatalogo = async (website, id) => {};
+const getCatalogos = async (website) => {
+  if(website === "surtonica") {
+    const allCatalogos = await CatalogoSurtonica.find();
+    return allCatalogos
+  } else if (website === "juanse") {
+    const allCatalogos = await CatalogoJuanse.find();
+    return allCatalogos;
+  }
+};
+const getCatalogo = async (website, id) => {
+  if(website === "surtonica") {
+    const allCatalogos = await CatalogoSurtonica.findById(id);
+    return allCatalogos
+  } else if (website === "juanse") {
+    const allCatalogos = await CatalogoJuanse.findById(id);
+    return allCatalogos;
+  }
+};
 const createCatalogo = async (body, website) => {
   const { title, artists, image, date, spotify, youtube, order } = body;
   if (website === "surtonica") {
@@ -28,8 +44,24 @@ const createCatalogo = async (body, website) => {
     return newCatalogo;
   }
 };
-const updateCatalogo = async (body, website, id) => {};
-const deleteCatalogo = async (website, id) => {};
+const updateCatalogo = async (body, website, id) => {
+  if(website === "surtonica") {
+    const allCatalogos = await CatalogoSurtonica.findByIdAndUpdate(id, body)
+    return allCatalogos
+  } else if (website === "juanse") {
+    const allCatalogos = await CatalogoJuanse.findByIdAndUpdate(id, body)
+    return allCatalogos;
+  }
+};
+const deleteCatalogo = async (website, id) => {
+  if(website === "surtonica") {
+    const allCatalogos = await CatalogoSurtonica.findByIdAndDelete(id)
+    return allCatalogos
+  } else if (website === "juanse") {
+    const allCatalogos = await CatalogoJuanse.findByIdAndDelete(id)
+    return allCatalogos;
+  }
+};
 
 module.exports = {
   getCatalogos,
