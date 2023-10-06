@@ -19,15 +19,15 @@ const getDemo = async (website, id) => {
   }
 };
 const createDemo = async (body, website) => {
-  const { title, artists, image, date, spotify, youtube, order } = body;
+  const { title, artists, image, date, prod, original, order } = body;
   if (website === "surtonica") {
     const newDemo = await DemoSurtonica.create({
       title,
       artists,
       image,
       date,
-      spotify,
-      youtube,
+      prod,
+      original,
       order,
     });
     return newDemo;
@@ -37,8 +37,8 @@ const createDemo = async (body, website) => {
       artists,
       image,
       date,
-      spotify,
-      youtube,
+      prod,
+      original,
       order,
     });
     return newDemo;
