@@ -10,4 +10,10 @@ const catalogoSchema = new mongoose.Schema({
   order: Number,
 });
 
-module.exports = mongoose.model("Catalogo", catalogoSchema);
+const CatalogoSurtonica = mongoose.model("Catalogo-Surtonica", catalogoSchema);
+const CatalogoJuanse = mongoose.model("Catalogo-Juanse", catalogoSchema);
+
+module.exports = {
+  CatalogoJuanse,
+  CatalogoSurtonica
+}

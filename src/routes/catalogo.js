@@ -1,18 +1,18 @@
 const { Router } = require("express");
 const {
-  getCatalogos,
-  getCatalogo,
-  createCatalogo,
-  updateCatalogo,
-  deleteCatalogo,
+  getAllCtrl,
+  getCtrl,
+  createCtrl,
+  updateCtrl,
+  deleteCtrl,
 } = require("../controllers/catalogo");
 
 const router = Router();
 
-router.get("/:pagina", getCatalogos)
-router.get("/:pagina/:id", getCatalogo);
-router.post("/:pagina", createCatalogo);
-router.put("/:pagina/:id", updateCatalogo);
-router.delete("/:pagina/:id", deleteCatalogo);
+router.get("/:pagina", getAllCtrl)
+router.get("/:pagina/:id", getCtrl);
+router.post("/:pagina", createCtrl);
+router.put("/:pagina/:id", updateCtrl);
+router.delete("/:pagina/:id", deleteCtrl);
 
 module.exports = { router };
