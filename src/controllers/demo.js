@@ -7,7 +7,6 @@ const {
   deleteDemo,
 } = require("../services/demo");
 
-
 const getAllCtrl = async (req, res) => {
   try {
     const { website } = req.params;
@@ -31,7 +30,7 @@ const createCtrl = async (req, res) => {
     const body = req.body;
     const { website } = req.params;
     const data = await createDemo(body, website);
-    res.status(200).json({ msg: "creado correctamente", data });
+    res.status(200).json({ msg: "Created successfully", data });
   } catch (error) {
     handleHttp(res, "ERROR_POST_DEMO", error);
   }
@@ -41,7 +40,7 @@ const updateCtrl = async (req, res) => {
     const body = req.body;
     const { website, id } = req.params;
     const data = await updateDemo(body, website, id);
-    res.status(200).json({ msg: "actualizado correctamente", data });
+    res.status(200).json({ msg: "Updated successfully", data });
   } catch (error) {
     handleHttp(res, "ERROR_PUT_DEMO", error);
   }
@@ -50,7 +49,7 @@ const deleteCtrl = async (req, res) => {
   try {
     const { website, id } = req.params;
     const data = await deleteDemo(website, id);
-    res.status(200).json({ msg: "eliminado correctamente", data });
+    res.status(200).json({ msg: "Deleted successfully", data });
   } catch (error) {
     handleHttp(res, "ERROR_DELETE_DEMO", error);
   }
