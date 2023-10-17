@@ -1,26 +1,13 @@
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-const fs = require("fs"); 
-require('dotenv').config();
+require("dotenv").config();
+const { S3Client } = require('@aws-sdk/client-s3');
 
-const client = new S3Client({
-  region: process.env.AWS_BUCKET_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_PUBLIC_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY
-  }
-});
-
-const uploadFile = async (file) => {
-  const steam = fs.createReadStream(file);
-  const uploadParams = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: "izi.png",
-    Body: steam
-  }
-  const command = new PutObjectCommand(uploadParams);
-  await client.send(command);
+const config = {
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
 }
+const s3 = new S3Client(config);
 
-module.exports = {
-  uploadFile
-}
+module.exports = s3;
