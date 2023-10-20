@@ -27,9 +27,33 @@ const catalogoSchema = new mongoose.Schema({
   },
   order: {
     type: Number,
-    required: true,
-    unique: true,
+    default: 1,
   },
+});
+
+catalogoSchema.pre("save", async function (next) {
+  if (this.isNew) {
+    try {
+      const highestOrderCatalog = await this.constructor.findOne({}, "order")
+        .sort({ order: -1 })
+        .exec();
+
+      if (highestOrderCatalog) {
+        const newOrder = highestOrderCatalog.order + 1;
+        await this.constructor.updateMany(
+          { order: { $gte: 1 } }, 
+          { $inc: { order: 1 } } 
+        ).exec();
+
+        this.order = 1;
+      } else {
+        this.order = 1; 
+      }
+    } catch (error) {
+      return next(error);
+    }
+  }
+  next();
 });
 
 const CatalogoSurtonica = mongoose.model("Catalogo Surtonica", catalogoSchema, "catalogo-surtonica");

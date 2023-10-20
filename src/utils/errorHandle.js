@@ -1,6 +1,6 @@
 const handleHttp = (res, error, errorRaw) => {
   console.log(errorRaw);
-  res.status(500).json({ error });
+  res.status(500).json({ error, errorRaw });
 };
 
 

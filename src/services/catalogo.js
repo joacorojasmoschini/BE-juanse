@@ -18,13 +18,13 @@ const getCatalogo = async (website, id) => {
     return allCatalogos;
   }
 };
-const createCatalogo = async (body, website) => {
-  const { title, artists, image, date, spotify, youtube, order } = body;
+const createCatalogo = async (body, website, imageUrl) => {
+  const { title, artists, date, spotify, youtube, order } = body;
   if (website === "surtonica") {
     const newCatalogo = await CatalogoSurtonica.create({
       title,
       artists,
-      image,
+      image: imageUrl,
       date,
       spotify,
       youtube,
@@ -35,7 +35,7 @@ const createCatalogo = async (body, website) => {
     const newCatalogo = await CatalogoJuanse.create({
       title,
       artists,
-      image,
+      image: imageUrl,
       date,
       spotify,
       youtube,
