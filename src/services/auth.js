@@ -16,10 +16,8 @@ const registerUser = async ({ email, password }) => {
 
 const loginUser = async ({ email, password }) => {
   const user = await UserModel.findOne({ email });
-
   const verify = await validate(password, user.password);
   if (!verify) return { message: "Incorrect fields" };
-
   const token = generateToken(user.id);
   return {
     token,
