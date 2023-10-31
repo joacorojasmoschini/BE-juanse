@@ -1,13 +1,12 @@
 const { handleHttp } = require("../utils/errorHandle");
 const { registerUser, loginUser } = require("../services/auth");
-
 const registerCtrl = async (req, res) => {
   try {
     const newUser = await registerUser(req.body);
-    if (newUser.hasOwnProperty("message")){
+    if (newUser.hasOwnProperty("message")) {
       res.status(409).json(newUser);
     } else {
-      res.status(200).json(newUser);  
+      res.status(200).json(newUser);
     }
   } catch (error) {
     handleHttp(res, "ERROR_REGISTER_USER", error);
@@ -21,6 +20,11 @@ const loginCtrl = async (req, res) => {
     if (logUser.hasOwnProperty("message")) {
       res.status(403).json(logUser);
     } else {
+
+      res.cookie("token", logUser.token, {
+        httpOnly: false,
+        withCredentials: true
+      });
       res.status(200).json(logUser);
     }
   } catch (error) {

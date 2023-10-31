@@ -12,8 +12,8 @@ const router = Router();
 
 router.get("/:website", getAllCtrl);
 router.get("/:website/:id", getCtrl);
-router.post("/:website", checkSession, createCtrl);
-router.put("/:website/:id", checkSession, updateCtrl);
-router.delete("/:website/:id", checkSession, deleteCtrl);
+router.post("/:website",  createCtrl);
+router.put("/:website/:id", updateCtrl);
+router.delete("/:website/:id", deleteCtrl);
 
 module.exports = { router };
