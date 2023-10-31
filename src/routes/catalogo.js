@@ -14,8 +14,8 @@ const router = Router();
 // Agregar checksession
 router.get("/:website", getAllCtrl);
 router.get("/:website/:id", getCtrl);
-router.post("/:website", upload.single("image"), createCtrl);
-router.put("/:website/:id", upload.single("image"), updateCtrl);
-router.delete("/:website/:id", deleteCtrl);
+router.post("/:website", checkSession, upload.single("image"), createCtrl);
+router.put("/:website/:id", checkSession,  upload.single("image"), updateCtrl);
+router.delete("/:website/:id", checkSession, deleteCtrl);
 
 module.exports = { router };

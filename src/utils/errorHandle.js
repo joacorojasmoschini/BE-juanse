@@ -8,7 +8,8 @@ const handleSession = (res, error) => {
   console.log(error);
   res.status(401).json({
     error,
-    message: "Invalid session"
+    session: false,
+    message: "invalid session"
   });
 };
 
