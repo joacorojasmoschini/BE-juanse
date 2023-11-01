@@ -30,7 +30,6 @@ const createCtrl = async (req, res) => {
     const body = req.body;
     const { website } = req.params;
     const imageUrl = req.file.location;
-    
     const data = await createCatalogo(body, website, imageUrl);
     res.status(200).json({ msg: "created successfully", data });
   } catch (error) {

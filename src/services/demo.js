@@ -18,32 +18,33 @@ const getDemo = async (website, id) => {
     return allDemos;
   }
 };
-const createDemo = async (body, website) => {
-  const { title, artists, image, date, prod, original, order } = body;
+const createDemo = async (body, website, files) => {
+  const { title, artists, date} = body;
+  const {image, prod, original} = files;
+  console.log(body);
   if (website === "surtonica") {
     const newDemo = await DemoSurtonica.create({
       title,
       artists,
-      image,
+      image: image[0].location,
       date,
-      prod,
-      original,
-      order,
+      prod: prod[0].location,
+      original: original[0].location,
     });
     return newDemo;
   } else if (website === "juanse") {
     const newDemo = await DemoJuanse.create({
       title,
       artists,
-      image,
+      image: image[0].location,
       date,
-      prod,
-      original,
-      order,
+      prod: prod[0].location,
+      original: original[0].location,
     });
     return newDemo;
   }
 };
+
 const updateDemo = async (body, website, id) => {
   if(website === "surtonica") {
     const allDemos = await DemoSurtonica.findByIdAndUpdate(id, body)
@@ -53,6 +54,7 @@ const updateDemo = async (body, website, id) => {
     return allDemos;
   }
 };
+
 const deleteDemo = async (website, id) => {
   if(website === "surtonica") {
     const allDemos = await DemoSurtonica.findByIdAndDelete(id)

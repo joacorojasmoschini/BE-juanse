@@ -11,7 +11,6 @@ const { upload } = require("../middlewares/multer");
 
 const router = Router();
 
-// Agregar checksession
 router.get("/:website", getAllCtrl);
 router.get("/:website/:id", getCtrl);
 router.post("/:website", checkSession, upload.single("image"), createCtrl);
