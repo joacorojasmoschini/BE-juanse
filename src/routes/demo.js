@@ -15,6 +15,7 @@ router.get("/:website", getAllCtrl);
 router.get("/:website/:id", getCtrl);
 router.post(
   "/:website",
+  checkSession,
   upload.fields([
     { name: "image", maxCount: 1 },
     { name: "prod", maxCount: 1 },
@@ -22,7 +23,7 @@ router.post(
   ]),
   createCtrl
 );
-router.put("/:website/:id", updateCtrl);
-router.delete("/:website/:id", deleteCtrl);
+router.put("/:website/:id", checkSession, updateCtrl);
+router.delete("/:website/:id", checkSession, deleteCtrl);
 
 module.exports = { router };

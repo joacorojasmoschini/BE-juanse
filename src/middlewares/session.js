@@ -18,7 +18,6 @@ const checkSession = (req, res, next) => {
         break;
       }
     }
-
     if (!token) {
       return res
         .status(401)
