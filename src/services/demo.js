@@ -19,7 +19,7 @@ const getDemo = async (website, id) => {
   }
 };
 const createDemo = async (body, website, files) => {
-  const { title, artists, date} = body;
+  const { title, artists, date, rol} = body;
   const {image, prod, original} = files;
   console.log(body);
   if (website === "surtonica") {
@@ -30,6 +30,7 @@ const createDemo = async (body, website, files) => {
       date,
       prod: prod[0].location,
       original: original[0].location,
+      rol
     });
     return newDemo;
   } else if (website === "juanse") {
@@ -40,6 +41,7 @@ const createDemo = async (body, website, files) => {
       date,
       prod: prod[0].location,
       original: original[0].location,
+      rol
     });
     return newDemo;
   }
