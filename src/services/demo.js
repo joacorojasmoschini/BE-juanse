@@ -41,7 +41,7 @@ const createDemo = async (body, website, files) => {
       date,
       prod: prod[0].location,
       original: original[0].location,
-      rol
+      rol,
     });
     return newDemo;
   }
