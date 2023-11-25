@@ -28,6 +28,7 @@ const getCtrl = async (req, res) => {
 const createCtrl = async (req, res) => {
   try {
     const body = req.body;
+    console.log(req.body);
     const { website } = req.params;
     const data = await createDemo(body, website, req.files);
     console.log(data);
