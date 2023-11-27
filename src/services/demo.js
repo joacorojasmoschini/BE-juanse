@@ -1,4 +1,5 @@
 const { DemoSurtonica, DemoJuanse } = require("../models/demo");
+const { s3 } = require('../utils/s3Handle')
 
 const getDemos = async (website) => {
   if(website === "surtonica") {
@@ -30,7 +31,7 @@ const createDemo = async (body, website, files) => {
       date,
       prod: prod[0].location,
       original: original[0].location,
-      rol
+      rol,
     });
     return newDemo;
   } else if (website === "juanse") {
@@ -58,13 +59,22 @@ const updateDemo = async (body, website, id) => {
 };
 
 const deleteDemo = async (website, id) => {
-  if(website === "surtonica") {
-    const allDemos = await DemoSurtonica.findByIdAndDelete(id)
-    return allDemos
-  } else if (website === "juanse") {
-    const allDemos = await DemoJuanse.findByIdAndDelete(id)
-    return allDemos;
+  let catalogoModel;
+  if (website === 'surtonica') {
+    catalogoModel = CatalogoSurtonica;
+  } else if (website === 'juanse') {
+    catalogoModel = CatalogoJuanse;
+  } else {
+    throw new Error('website not found');
   }
+  const catalogo = await catalogoModel.findById(id);
+  if (!catalogo) {
+    throw new Error('catalago dont found');
+  }
+  const deletedCatalogo = await catalogoModel.findByIdAndDelete(id);
+  const key = catalogo.image;
+  await s3.send(new DeleteObjectCommand({ Bucket: process.env.AWS_BUCKET_NAME, Key: key }));
+  return deletedCatalogo;
 };
 
 module.exports = {
