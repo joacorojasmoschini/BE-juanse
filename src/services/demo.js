@@ -18,8 +18,8 @@ const getDemo = async (website, id) => {
     return allDemos;
   }
 };
-const createDemo = async (body, website) => {
-  const { title, artists, image, date, prod, original, order } = body;
+const createDemo = async (body, website, { image, prod, original }) => {
+  const { title, artists, date, order } = body;
   if (website === "surtonica") {
     const newDemo = await DemoSurtonica.create({
       title,
