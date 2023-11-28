@@ -28,10 +28,10 @@ const getCtrl = async (req, res) => {
 const createCtrl = async (req, res) => {
   try {
     const body = req.body;
+    console.log(req.body);
     const { website } = req.params;
-    const files = { image: req.files.image[0].location, prod: req.files.prod[0].location, original: req.files.original[0].location }
-    console.log(files)
-    const data = await createDemo(body, website, files);
+    const data = await createDemo(body, website, req.files);
+    console.log(data);
     res.status(200).json({ msg: "Created successfully", data });
   } catch (error) {
     handleHttp(res, "ERROR_POST_DEMO", error);

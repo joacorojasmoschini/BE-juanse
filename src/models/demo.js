@@ -25,6 +25,11 @@ const demoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  rol: {
+    type: String,
+    enum: ["master", "mix"],
+    required: true
+  }
 });
 
 const DemoSurtonica = mongoose.model("Demo Surtonica", demoSchema, "demo-surtonica");
