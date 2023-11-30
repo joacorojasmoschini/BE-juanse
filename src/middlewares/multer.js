@@ -6,13 +6,11 @@ require("dotenv").config();
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: process.env.AWS_BUCKET_NAME,
+    bucket: 'juansecampos',
     key: (req, file, cb) => {
       cb(null, Date.now() + "-" + file.originalname);
     },
   }),
 });
-console.log(process.env.AWS_BUCKET_NAME)
-console.log(upload)
 
 module.exports = { upload };
