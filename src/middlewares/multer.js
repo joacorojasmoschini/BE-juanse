@@ -12,5 +12,7 @@ const upload = multer({
     },
   }),
 });
+console.log(process.env.AWS_BUCKET_NAME)
+console.log(upload)
 
 module.exports = { upload };
