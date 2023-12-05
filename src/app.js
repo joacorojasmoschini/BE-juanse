@@ -26,8 +26,8 @@ const options = {
   cert: fs.readFileSync('/etc/ssl/mysite.crt')
 };
 
-https.createServer(options, app).listen(3000, () => {
-  console.log('Server running on port 3000');
+https.createServer(options, app).listen(443, () => {
+  console.log('Server running on port 443');
 });
 
 module.exports = app;
